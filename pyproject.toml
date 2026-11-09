@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling==1.33.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "websitescreenshotworld"
+dynamic = ["version"]
+description = "Python client for the Website Screenshot World Instant Snap and Auto Schedule APIs."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Silhouettec Solutions Private Limited", email = "support@websitescreenshotworld.com" }]
+requires-python = ">=3.10"
+dependencies = ["httpx>=0.27,<1"]
+keywords = ["screenshot", "website screenshot", "pdf", "api client", "webhooks"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0", "ruff==0.17.3", "mypy==2.4.0"]
+
+[project.urls]
+Homepage = "https://websitescreenshotworld.com"
+Source = "https://github.com/websitescreenshotworld/websitescreenshotworld-python"
+Changelog = "https://github.com/websitescreenshotworld/websitescreenshotworld-python/blob/main/CHANGELOG.md"
+Issues = "https://github.com/websitescreenshotworld/websitescreenshotworld-python/issues"
+
+[tool.hatch.version]
+path = "src/websitescreenshotworld/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/websitescreenshotworld"]
+# Metadata 2.4 is the newest that every PyPI upload tool reads; hatchling 1.33 writes 2.5 by default.
+core-metadata-version = "2.4"
+
+[tool.hatch.build.targets.sdist]
+core-metadata-version = "2.4"
+include = ["/src", "/tests", "/README.md", "/CHANGELOG.md", "/LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.mypy]
+strict = true
+python_version = "3.10"
+files = ["src", "tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF", "PT", "C4", "RET"]

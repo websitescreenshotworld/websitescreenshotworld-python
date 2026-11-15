@@ -152,7 +152,7 @@ def test_keys_are_not_in_the_repr() -> None:
 
 def test_user_agent_names_the_library_and_runtime() -> None:
     assert re.fullmatch(
-        r"websitescreenshotworld-python/0\.3\.0 \(\w+ \d+\.\d+\.\d+\S*\)", USER_AGENT
+        r"websitescreenshotworld-python/0\.4\.0 \(\w+ \d+\.\d+\.\d+\S*\)", USER_AGENT
     )
     recorder = Recorder(answer(CAPTURE))
     recorder.client(instant_snap_api_key="k").instant_snap.get(CAPTURE["id"])

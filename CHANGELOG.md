@@ -4,6 +4,15 @@ All notable changes to this package are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the package uses
 [semantic versioning](https://semver.org/).
 
+## [0.4.0] - 2026-11-15
+
+Follows the API spec's render links (`render-link-vectors.json`).
+
+### Added
+
+- `RenderLink.build(...)`: a signed render link - a URL that is itself a screenshot, for an `<img>` tag,
+  an email or a social preview - made locally from a key's render secret and prefix. Nothing is sent.
+
 ## [0.3.0] - 2026-11-15
 
 Follows the API spec at Instant Snap API 1.4.0 and Auto Schedule API 1.3.0.
@@ -55,6 +64,7 @@ The first release.
 - `webhooks.verify`, which checks the `X-WSW-Signature` header and returns a typed event for every
   documented event type, or `UnknownEvent` for a type added later.
 
+[0.4.0]: https://github.com/websitescreenshotworld/websitescreenshotworld-python/tree/v0.4.0
 [0.3.0]: https://github.com/websitescreenshotworld/websitescreenshotworld-python/tree/v0.3.0
 [0.2.0]: https://github.com/websitescreenshotworld/websitescreenshotworld-python/tree/v0.2.0
 [0.1.0]: https://github.com/websitescreenshotworld/websitescreenshotworld-python/tree/v0.1.0

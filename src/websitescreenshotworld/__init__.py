@@ -59,6 +59,7 @@ from ._params import (
     TimestampWatermarkParam,
     ViewportParam,
 )
+from ._render_link import RenderLink, RenderLinkFormat
 from ._version import __version__
 
 __all__ = [
@@ -90,6 +91,8 @@ __all__ = [
     "Product",
     "ProxyParam",
     "RateLimitError",
+    "RenderLink",
+    "RenderLinkFormat",
     "ResponseType",
     "S3Delivery",
     "S3DeliveryParam",

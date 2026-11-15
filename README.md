@@ -320,6 +320,35 @@ once; their `timeout` keyword is the API's async option (see [Async captures](#a
 
 For asyncio, `asyncio.timeout()` and task cancellation stop a call, retries included, at once.
 
+## Render links
+
+A render link is a signed URL that is itself a screenshot, for an `<img>` tag, an email or a social
+preview. `RenderLink.build` makes one locally - nothing is sent and no client is needed - from the key's
+render secret (shown on the dashboard's API Keys page once render links are on for the key) and its
+12-character prefix:
+
+```python
+import os
+
+from websitescreenshotworld import RenderLink
+
+src = RenderLink.build(
+    render_secret=os.environ["WSW_RENDER_SECRET"],
+    key_prefix="0123456789ab",
+    url="https://example.com",
+    format="webp",
+    width=1280,
+    height=720,
+    thumb_width=400,
+    ttl=86_400,  # serve the same capture for a day
+)
+# <img src="{src}" alt="example.com">
+```
+
+A view of the link that is not cached makes one capture from your plan; cached views are free. Keep the
+render secret on your server: anyone who has it can make links that use your captures. Render links are
+on the Pro, Business and Business Plus plans.
+
 ## Webhooks
 
 Deliveries are signed with the endpoint's secret in the `X-WSW-Signature` header.

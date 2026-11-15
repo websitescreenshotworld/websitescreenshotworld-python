@@ -279,6 +279,31 @@ class TriggerResult:
         )
 
 
+@dataclass(frozen=True)
+class Account:
+    """Whose API key this is: the answer to ``account()``. It never includes the key itself."""
+
+    key_name: str | None
+    """The name given to the key in the dashboard (Developer Tools, API Keys), or ``None``."""
+    key_prefix: str
+    """The key's public prefix, as the dashboard shows it. Not enough to use the key."""
+    product: str
+    """``instant_snap`` or ``auto_schedule``. See :class:`Product`."""
+    email: str | None
+    """The member who created the key, or ``None`` when they are no longer a member."""
+    raw: dict[str, Any] = field(repr=False, compare=False)
+
+    @classmethod
+    def _from_wire(cls, data: Mapping[str, Any]) -> Account:
+        return cls(
+            key_name=data.get("key_name"),
+            key_prefix=data["key_prefix"],
+            product=data["product"],
+            email=data.get("email"),
+            raw=dict(data),
+        )
+
+
 def read_object(data: object, reader: Callable[[Mapping[str, Any]], _T]) -> _T:
     """Build a result from decoded JSON, dropping ``success``.
 

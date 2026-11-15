@@ -61,6 +61,8 @@ def call_sync(client: WebsiteScreenshotWorld, call: Mapping[str, Any]) -> Any:
     options: dict[str, Any] = dict(call.get("options", {}))
     idempotency_key = call.get("idempotency_key")
     if call["product"] == "auto_schedule":
+        if method == "account":
+            return client.auto_schedule.account()
         return client.auto_schedule.trigger_now(call["web_page_id"])
     snap = client.instant_snap
     if method == "capture":
@@ -82,6 +84,8 @@ def call_sync(client: WebsiteScreenshotWorld, call: Mapping[str, Any]) -> Any:
         return snap.defaults()
     if method == "catalog":
         return snap.catalog()
+    if method == "account":
+        return snap.account()
     raise AssertionError(f"unknown method {method}")
 
 
@@ -90,6 +94,8 @@ async def call_async(client: AsyncWebsiteScreenshotWorld, call: Mapping[str, Any
     options: dict[str, Any] = dict(call.get("options", {}))
     idempotency_key = call.get("idempotency_key")
     if call["product"] == "auto_schedule":
+        if method == "account":
+            return await client.auto_schedule.account()
         return await client.auto_schedule.trigger_now(call["web_page_id"])
     snap = client.instant_snap
     if method == "capture":
@@ -111,6 +117,8 @@ async def call_async(client: AsyncWebsiteScreenshotWorld, call: Mapping[str, Any
         return await snap.defaults()
     if method == "catalog":
         return await snap.catalog()
+    if method == "account":
+        return await snap.account()
     raise AssertionError(f"unknown method {method}")
 
 

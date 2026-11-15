@@ -93,6 +93,24 @@ def catalog(config: ClientConfig) -> Request:
     )
 
 
+def instant_snap_account(config: ClientConfig) -> Request:
+    return Request(
+        method="GET",
+        url=config.instant_snap_base_url + "/instant-snap/v1/account",
+        headers=request_headers(api_key=config.require_instant_snap_key()),
+        timeout=config.timeout,
+    )
+
+
+def auto_schedule_account(config: ClientConfig) -> Request:
+    return Request(
+        method="GET",
+        url=config.auto_schedule_base_url + "/auto-schedule/v1/account",
+        headers=request_headers(api_key=config.require_auto_schedule_key()),
+        timeout=config.timeout,
+    )
+
+
 def trigger_now(config: ClientConfig, web_page_id: str) -> Request:
     return Request(
         method="POST",

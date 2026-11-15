@@ -37,7 +37,16 @@ from ._errors import (
     WebsiteScreenshotWorldError,
 )
 from ._files import AsyncCaptureFile, AsyncCaptureFileContext, CaptureFile, SaveTarget
-from ._models import Capture, Catalog, Defaults, PageSource, S3Delivery, TriggerResult, Viewport
+from ._models import (
+    Account,
+    Capture,
+    Catalog,
+    Defaults,
+    PageSource,
+    S3Delivery,
+    TriggerResult,
+    Viewport,
+)
 from ._params import (
     CaptureFileOptions,
     CaptureOptions,
@@ -55,6 +64,7 @@ from ._version import __version__
 __all__ = [
     "APIConnectionError",
     "APITimeoutError",
+    "Account",
     "AsyncCaptureFile",
     "AsyncCaptureFileContext",
     "AsyncWebsiteScreenshotWorld",

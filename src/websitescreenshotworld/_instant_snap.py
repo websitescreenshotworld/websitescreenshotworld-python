@@ -15,7 +15,7 @@ from ._files import (
     awrite_chunks,
     write_chunks,
 )
-from ._models import Capture, Catalog, Defaults, read_response
+from ._models import Account, Capture, Catalog, Defaults, read_response
 from ._params import CaptureFileOptions, CaptureOptions, S3DeliveryParam, SubmitOptions
 from ._transport import AsyncTransport, SyncTransport
 
@@ -243,6 +243,14 @@ class InstantSnap:
         request = _requests.catalog(self._config)
         return read_response(self._transport.send(request), Catalog._from_wire)
 
+    def account(self) -> Account:
+        """Whose key this is: its name and prefix, its product and the member who created it.
+
+        Costs no capture, so it is also a cheap way to check a key works.
+        """
+        request = _requests.instant_snap_account(self._config)
+        return read_response(self._transport.send(request), Account._from_wire)
+
 
 class AsyncInstantSnap:
     """The Instant Snap API for asyncio. Reached as ``client.instant_snap``."""
@@ -404,3 +412,8 @@ class AsyncInstantSnap:
         """The devices ``emulated_device`` accepts and the countries ``proxy`` accepts."""
         request = _requests.catalog(self._config)
         return read_response(await self._transport.send(request), Catalog._from_wire)
+
+    async def account(self) -> Account:
+        """Whose key this is. See :meth:`InstantSnap.account`."""
+        request = _requests.instant_snap_account(self._config)
+        return read_response(await self._transport.send(request), Account._from_wire)

@@ -156,6 +156,17 @@ Any S3-compatible service works: give `endpoint_url` (https) instead of, or as w
 limits (no key needed). `client.instant_snap.catalog()` lists the devices `emulated_device` accepts
 and the countries `proxy` accepts.
 
+### Whose key is this
+
+`account()` answers whose key the client holds, without the key itself and without spending a capture:
+
+```python
+account = client.instant_snap.account()
+print(account.email, account.key_name, account.key_prefix)
+```
+
+`client.auto_schedule.account()` does the same for the Auto Schedule key.
+
 ## Async captures
 
 `submit` queues a capture and answers at once with the capture in status `queued`; it then runs when a

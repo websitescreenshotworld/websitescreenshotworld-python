@@ -81,6 +81,8 @@ class Capture:
     """An Instant Snap capture."""
 
     id: str
+    url: str
+    """The page the capture was asked for. ``final_url`` says where the browser ended up."""
     status: str
     """See :class:`CaptureStatus`. An async capture is ``queued``, then ``running``, then
     ``succeeded`` or ``failed``."""
@@ -119,6 +121,8 @@ class Capture:
         s3_delivery = data.get("s3_delivery")
         return cls(
             id=data["id"],
+            # Sent from API 1.3.0; empty only from an older server.
+            url=data.get("url", ""),
             status=data["status"],
             response_type=data["response_type"],
             media_category=data.get("media_category"),

@@ -4,6 +4,17 @@ All notable changes to this package are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the package uses
 [semantic versioning](https://semver.org/).
 
+## [0.2.0] - 2026-11-15
+
+Follows the API spec at Instant Snap API 1.3.0.
+
+### Added
+
+- `Capture.url`: the page the capture was asked for, on every capture and on Instant Snap webhook events
+  (`capture.succeeded`, `capture.failed`, `delivery.completed`), as Auto Schedule events already had it.
+- The error codes of the webhook endpoints API: `webhook_endpoint_not_found` raises `NotFoundError` and
+  `webhook_endpoint_limit_reached` raises `PlanLimitError`.
+
 ## [0.1.0] - 2026-11-09
 
 The first release.
@@ -34,4 +45,5 @@ The first release.
 - `webhooks.verify`, which checks the `X-WSW-Signature` header and returns a typed event for every
   documented event type, or `UnknownEvent` for a type added later.
 
+[0.2.0]: https://github.com/websitescreenshotworld/websitescreenshotworld-python/tree/v0.2.0
 [0.1.0]: https://github.com/websitescreenshotworld/websitescreenshotworld-python/tree/v0.1.0
